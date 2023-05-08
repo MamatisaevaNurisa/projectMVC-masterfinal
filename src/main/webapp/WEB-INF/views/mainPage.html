@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    body{
+        background-color: #2c3e50;
+    }
+    .container{
+        max-width: 1170px;
+        padding: 0 15px;
+        margin: 0 auto;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+    }
+    ul{
+        list-style: none;
+
+    }
+    a{
+        text-decoration: none;
+    }
+    .list{
+        text-align: center;
+        width: 600px;
+        margin: 30px auto 0;
+        text-transform: uppercase;
+        align-items: center;
+    }
+    li{
+        width: 600px;
+        margin-bottom: 20px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        border-radius: 5px;
+        border-color: rgba(69, 171, 243, 0.99);
+        color: #fff;
+        box-shadow: 0 0 40px 40px rgb(52, 152, 219) inset, 0 0 0 0 rgb(52, 152, 219);
+        -webkit-transition: all 150ms ease-in-out;
+        transition: all 150ms ease-in-out;
+    }
+    li:hover{
+        transform: scale(1.1);
+        box-shadow: 0 0 10px 0 rgb(52, 152, 219) inset, 0 0 10px 4px rgb(52, 152, 219);
+    }
+
+</style>
+<body>
+<div class="container">
+    <ul class="list">
+        <a href="/companies"><li>Company</li></a>
+        <a href="/courses"><li>Course</li></a>
+        <a href="/groups"><li>Group</li></a>
+        <a href="/students"><li>Student</li></a>
+        <a href="/teachers"><li>Teacher</li></a>
+    </ul>
+</div>
+
+
+</body>
+</html>

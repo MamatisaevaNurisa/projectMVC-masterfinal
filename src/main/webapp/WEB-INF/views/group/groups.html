@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Groups</title>
+    <link href="https://file.myfontastic.com/fKyRM6L6QN67kUoN8zt4JA/icons.css" rel="stylesheet">
+</head>
+<style>
+    body {
+        background-color: #2c3e50;
+    }
+    * {
+        box-sizing: inherit;
+        transition-property: all;
+        transition-duration: .6s;
+        transition-timing-function: ease;
+    }
+    a {
+        text-decoration: none;
+        color: #003153;
+    }
+    .container {
+        width: 1170px;
+        margin: 0 auto;
+    }
+
+    .header-top {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        padding: 1em;
+        text-align: center;
+    }
+
+    .btn {
+        color: #fff;
+        cursor: pointer;
+    / / display: block;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 45px;
+        margin: 0 0 1em;
+        max-width: 190px;
+        position: relative;
+        text-decoration: none;
+        text-transform: uppercase;
+        width: 100%;
+    }
+
+    .btn-2 {
+        letter-spacing: 0;
+    }
+
+    .btn-2:hover,
+    .btn-2:active {
+        letter-spacing: 5px;
+    }
+
+    .btn-2:after,
+    .btn-2:before {
+        backface-visibility: hidden;
+        border: 1px solid rgba(255, 255, 255, 0);
+        bottom: 0px;
+        content: " ";
+        display: block;
+        margin: 0 auto;
+        position: relative;
+        transition: all 280ms ease-in-out;
+        width: 0;
+    }
+
+    .btn-2:hover:after,
+    .btn-2:hover:before {
+        backface-visibility: hidden;
+        border-color: #fff;
+        transition: width 350ms ease-in-out;
+        width: 70%;
+    }
+
+    .btn-2:hover:before {
+        bottom: auto;
+        top: 0;
+        width: 70%;
+    }
+    thead {
+        background-color: darkorange;
+    }
+
+    table {
+        width: 1170px;
+        border-collapse: collapse;
+        margin: auto;
+        background-color: rgb(255, 228, 196);
+    }
+
+    td {
+        text-align: center;
+    }
+    .td-color:hover{
+        background-color: rgb(98, 99, 155);
+    }
+    tr, td, th {
+        border: none;
+        padding: 15px;
+    }
+    button{
+        border: none;
+        background-color: transparent;
+    }
+</style>
+<body>
+<header class="container">
+    <div class="header-top">
+        <a href="/" class="btn btn-2">HOME</a>
+        <a href="companies" class="btn btn-2">COMPANY</a>
+        <a href="courses" class="btn btn-2">COURSE</a>
+        <a href="students" class="btn btn-2">STUDENT</a>
+        <a href="teachers" class="btn btn-2">TEACHER</a>
+        <a href="groups/addGroup" class="btn btn-2">Add group</a>
+    </div>
+</header>
+<form>
+    <input style=" display: block; margin:auto; font-size:15px;" class="b1" type="button"
+           value="searchStudent" onclick="window.location.href = 'groups/search'">
+</form>
+<div class="container">
+    <table>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Group Name</th>
+            <th>Data of Start</th>
+            <th>Data of Finish</th>
+            <!--    <th>CourseName</th>-->
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="td-color" th:each="group:${groups}">
+            <td th:text="${group.id}"></td>
+            <td th:text="${group.groupName}"></td>
+            <td th:text="${group.dataOfStart}"></td>
+            <td th:text="${group.dataOfFinish}"></td>
+            <!--    <td th:text="${group.getCourses()}"></td>-->
+            <td>
+                <a th:href="@{/groups/update/{id}(id=${group.id})}">
+                    <!--                <button style="height: auto; background-color: darkblue ">update</button>-->
+                    <i class="icon-pencil-square-o"></i>
+                </a>
+            </td>
+            <td>
+                <form th:method="Delete"
+                      th:action="@{/groups/delete(id=${group.id})}">
+                    <!--                <button type="submit" style="height: auto; background-color: red ">delete</button>-->
+                    <button>
+                        <i class="icon-trash-o"></i>
+                    </button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+
+
+
+</body>
+</html>

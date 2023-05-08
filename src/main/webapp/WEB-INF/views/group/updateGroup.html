@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Update Course</title>
+</head>
+<style>
+  body {
+    background-color: #2c3e50;
+  }
+
+  .row {
+    width: 500px;
+    margin: 0 auto;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+  }
+
+  .text {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  .submit {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .submit:hover {
+    background-color: #45a049;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .back {
+    display: block;
+    width: 460px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin-top: 20px;
+    /*margin: 8px 0;*/
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  .back:hover {
+    background-color: #45a049;
+  }
+  select {
+    width: 100%;
+    padding: 16px 20px;
+    border-radius: 4px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin: 8px 0;
+  }
+</style>
+<body>
+<div class="row">
+  <form th:action="@{/groups/{id}(id=${updateGroup.id})}"
+        th:method="patch"
+        th:object="${updateGroup}">
+
+    <label th:for="fname">Group name</label>
+    <input class="text" th:type="text" th:field="*{groupName}" th:id="fname" th:name="coursename"
+           placeholder="course name">
+
+    <label th:for="data">Data of start</label>
+    <input class="text" th:type="text" th:field="*{dataOfStart}" th:id="data" th:name="dataOfStart"
+           placeholder="data of start">
+
+    <label th:for="data">Data of finish</label>
+    <input class="text" th:type="text" th:field="*{dataOfFinish}" th:id="data" th:name="dataOfFinish"
+           placeholder="data of finish">
+
+    <label th:for="course" name="course">Course</label>
+    <select th:field="*{courseId}" th:id="course" th:name="course">-->
+      <option th:each="course:${courseList}"
+              th:value="${course.id}"
+              th:text="${course.courseName}">
+      </option>
+    </select>
+
+    <input class="submit" type="submit" value="Update">
+    <a href="/groups" class="back">Go back</a>
+  </form>
+</div>
+</body>
+</html>

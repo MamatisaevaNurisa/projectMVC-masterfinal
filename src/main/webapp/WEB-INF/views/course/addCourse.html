@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Company</title>
+</head>
+<style>
+    body{
+        background-color: #2c3e50;
+    }
+    .row {
+        width: 500px;
+        margin: 0 auto;
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+    }
+    .text {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    .submit {
+        width: 100%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .submit:hover {
+        background-color: #45a049;
+    }
+    a {
+        text-decoration: none;
+    }
+    .back {
+        display: block;
+        width: 460px;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin-top: 20px;
+        /*margin: 8px 0;*/
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-align: center;
+    }
+    .back:hover {
+        background-color: #45a049;
+    }
+
+
+
+</style>
+
+<body>
+<div class="row">
+    <form th:action="@{saveCourse}"
+          th:method="post"
+          th:object="${course}">
+
+        <label th:for="fname">Course name</label>
+        <input class="text" th:type="text" th:field="*{courseName}" th:id="fname" th:name="coursename" placeholder="course name">
+
+        <label th:for="dmonth">Duration month</label>
+        <input class="text" th:type="text" th:field="*{durationMonth}" th:id="dmonth" th:name="durationMonth" placeholder="duration month">
+
+        <input class="submit" type="submit" value="Add Course">
+        <a href="/courses" class="back">Go back</a>
+    </form>
+
+</div>
+
+</body>
+</html>
