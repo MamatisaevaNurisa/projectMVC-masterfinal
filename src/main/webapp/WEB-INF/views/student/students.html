@@ -107,6 +107,45 @@
       border: none;
       background-color: transparent;
   }
+  .links-plus-search{
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      height: 50px;
+      width: 50px;
+      background-color: #FFABAB;
+      box-shadow: 0px 10px 10px rgba(0,0,0,0.1);
+      border-radius: 50%;
+      margin-left: 10px;
+      transform: translateY(15px);
+  }
+  .links-plus-search span{
+      display: none;
+      overflow: hidden;
+      transition: 1s;
+      margin-left: 10px;
+      font-size: 20px;
+      color: #ffffff;
+  }
+  .links-plus-search i {
+      color: #ffffff;
+      font-size: 30px;
+      margin-left: 10px;
+      transform: translateY(15px);
+  }
+  .links-plus-search:hover{
+      width: 150px;
+      border-radius: 5px;
+  }
+  .links-plus-search:hover i{
+      display: none;
+  }
+  .links-plus-search:hover span{
+      display: flex;
+      padding: 2px;
+      width: max-content;
+      transition: 0.6s;
+  }
 </style>
 <body>
 <header class="container">
@@ -116,10 +155,17 @@
     <a href="courses" class="btn btn-2">COURSE</a>
     <a href="students" class="btn btn-2">STUDENT</a>
     <a href="teachers" class="btn btn-2">TEACHER</a>
-    <a href="students/addStudent" class="btn btn-2">Add student</a>
   </div>
 </header>
 <div class="container">
+    <div class="links-plus-search">
+        <a href="students/addStudent">
+            <i class="icon-plus"></i>
+            <span>
+                Add Company
+            </span>
+        </a>
+    </div>
     <table>
         <thead>
         <tr>

@@ -107,6 +107,46 @@
         border: none;
         background-color: transparent;
     }
+    .links-plus-search{
+        display: flex;
+        justify-content: flex-start;
+    }
+    .plus{
+        cursor: pointer;
+        /*height: 50px;*/
+        width: 50px;
+        padding-top: 12px;
+        padding-bottom: 4px;
+        background-color: #FFABAB;
+        box-shadow: 0px 10px 10px rgba(0,0,0,0.1);
+        border-radius: 50%;
+        margin-left: 10px;
+        transform: translateY(15px);
+    }
+    .plus span{
+        display: none;
+        overflow: hidden;
+        margin-left: 12px;
+        font-size: 20px;
+        color: #ffffff;
+    }
+    .plus i {
+        color: #ffffff;
+        font-size: 25px;
+        margin-left: 12px;
+    }
+    .plus:hover{
+        width: 150px;
+        border-radius: 5px;
+    }
+    .plus:hover i{
+        display: none;
+    }
+    .plus:hover span{
+        display: flex;
+        width: max-content;
+        transition: 0.6s;
+    }
 </style>
 <body>
 <header class="container">
@@ -116,14 +156,23 @@
         <a href="courses" class="btn btn-2">COURSE</a>
         <a href="students" class="btn btn-2">STUDENT</a>
         <a href="teachers" class="btn btn-2">TEACHER</a>
-        <a href="groups/addGroup" class="btn btn-2">Add group</a>
     </div>
 </header>
-<form>
-    <input style=" display: block; margin:auto; font-size:15px;" class="b1" type="button"
-           value="searchStudent" onclick="window.location.href = 'groups/search'">
-</form>
 <div class="container">
+    <div class="links-plus-search">
+        <a href="groups/addGroup" class="plus" >
+            <i class="icon-plus"></i>
+            <span>
+                Add Company
+            </span>
+        </a>
+        <a onclick="window.location.href = 'groups/search'" class="plus" >
+            <i class="icon-search"></i>
+            <span>
+                Search
+            </span>
+        </a>
+    </div>
     <table>
         <thead>
         <tr>
