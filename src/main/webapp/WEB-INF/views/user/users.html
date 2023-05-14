@@ -2,19 +2,21 @@
 <html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>Groups</title>
+    <title>users</title>
     <link href="https://file.myfontastic.com/fKyRM6L6QN67kUoN8zt4JA/icons.css" rel="stylesheet">
 </head>
 <style>
     body {
         background-color: #2c3e50;
     }
+
     * {
         box-sizing: inherit;
         transition-property: all;
         transition-duration: .6s;
         transition-timing-function: ease;
     }
+
     a {
         text-decoration: none;
         color: #003153;
@@ -30,6 +32,7 @@
     button:hover{
         color: #cccccc;
     }
+
     .container {
         width: 1170px;
         margin: 0 auto;
@@ -93,6 +96,7 @@
         top: 0;
         width: 70%;
     }
+
     thead {
         background-color: darkorange;
     }
@@ -107,50 +111,58 @@
     td {
         text-align: center;
     }
-    .td-color:hover{
+
+    .td-color:hover {
         background-color: rgb(98, 99, 155);
     }
+
     tr, td, th {
         border: none;
         padding: 15px;
     }
-    .links-plus-search{
+
+
+    .links-plus-search {
         display: flex;
-        justify-content: flex-start;
-    }
-    .plus{
+        align-items: center;
         cursor: pointer;
-        /*height: 50px;*/
+        height: 50px;
         width: 50px;
-        padding-top: 12px;
-        padding-bottom: 4px;
         background-color: #FFABAB;
-        box-shadow: 0px 10px 10px rgba(0,0,0,0.1);
+        box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
         border-radius: 50%;
         margin-left: 10px;
         transform: translateY(15px);
     }
-    .plus span{
+
+    .links-plus-search span {
         display: none;
         overflow: hidden;
-        margin-left: 12px;
+        transition: 1s;
+        margin-left: 10px;
         font-size: 20px;
         color: #ffffff;
     }
-    .plus i {
+
+    .links-plus-search i {
         color: #ffffff;
-        font-size: 25px;
-        margin-left: 12px;
+        font-size: 30px;
+        margin-left: 10px;
+        transform: translateY(15px);
     }
-    .plus:hover{
+
+    .links-plus-search:hover {
         width: 150px;
         border-radius: 5px;
     }
-    .plus:hover i{
+
+    .links-plus-search:hover i {
         display: none;
     }
-    .plus:hover span{
+
+    .links-plus-search:hover span {
         display: flex;
+        padding: 2px;
         width: max-content;
         transition: 0.6s;
     }
@@ -159,69 +171,59 @@
 <header class="container">
     <div class="header-top">
         <a href="/" class="btn btn-2">HOME</a>
-        <a sec:authorize="hasAuthority('ADMIN')" href="companies" class="btn btn-2">COMPANY</a>
-        <a href="courses" class="btn btn-2">COURSE</a>
-        <a href="students" class="btn btn-2">STUDENT</a>
-        <a sec:authorize="hasAuthority('ADMIN')" href="teachers" class="btn btn-2">TEACHER</a>
+        <a href="users/profile" class="btn btn-2">Profile</a>
         <a href="/login" class="btn btn-2">EXIT</a>
     </div>
 </header>
+
 <div class="container">
-    <div sec:authorize="hasAuthority('ADMIN')" class="links-plus-search">
-        <a href="groups/addGroup" class="plus" >
+    <div   class="links-plus-search">
+        <a href="users/addUser">
             <i class="icon-plus"></i>
             <span>
-                Add group
-            </span>
-        </a>
-        <a onclick="window.location.href = 'groups/search'" class="plus" >
-            <i class="icon-search"></i>
-            <span>
-                Search
+                Add User
             </span>
         </a>
     </div>
     <table>
         <thead>
         <tr>
-            <th>#</th>
-            <th>Group Name</th>
-            <th>Data of Start</th>
-            <th>Data of Finish</th>
-            <!--    <th>CourseName</th>-->
-            <th>Update</th>
-            <th sec:authorize="hasAuthority('ADMIN')">Delete</th>
+            <th>Id</th>
+            <th>User name</th>
+            <th>Last name</th>
+            <th>Email</th>
+            <th>Age</th>
+            <th >Update</th>
+            <th >Delete</th>
         </tr>
         </thead>
         <tbody>
-        <tr class="td-color" th:each="group:${groups}">
-            <td th:text="${group.id}"></td>
-            <td th:text="${group.groupName}"></td>
-            <td th:text="${group.dataOfStart}"></td>
-            <td th:text="${group.dataOfFinish}"></td>
-            <!--    <td th:text="${group.getCourses()}"></td>-->
-            <td>
-                <a th:href="@{/groups/update/{id}(id=${group.id})}">
-                    <!--                <button style="height: auto; background-color: darkblue ">update</button>-->
+        <tr class="td-color" th:each="user:${users}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.username}"></td>
+            <td th:text="${user.lastName}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.age}"></td>
+            <td >
+                <a  th:href="@{/users/update/{id}(id=${user.getId()})}">
+                    <!--                    <input type="submit" value="update" style="color: red">-->
                     <i class="icon-pencil-square-o"></i>
                 </a>
             </td>
-            <td sec:authorize="hasAuthority('ADMIN')">
-                <form th:method="Delete"
-                      th:action="@{/groups/delete(id=${group.id})}">
-                    <!--                <button type="submit" style="height: auto; background-color: red ">delete</button>-->
+
+            <td >
+                <form th:method="delete" th:action="@{/users/delete/(id=${user.getId()})}">
+                    <!--                    <input type="submit" value="delete" style="color: red">-->
                     <button>
                         <i class="icon-trash-o"></i>
                     </button>
                 </form>
             </td>
+
         </tr>
         </tbody>
 
     </table>
 </div>
-
-
-
 </body>
 </html>

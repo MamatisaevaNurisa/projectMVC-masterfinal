@@ -101,7 +101,7 @@
             <label for="offlineFormat">OFFLINE</label>
         </div>
 
-        <select th:field="*{groupId}">-->
+        <select th:field="*{groupId}">
             <option th:each="group:${groupList}"
                     th:value="${group.id}"
                     th:text="${group.groupName}">

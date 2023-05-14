@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <meta charset="UTF-8">
   <title>Students</title>
@@ -16,8 +16,19 @@
       transition-timing-function: ease;
   }
   a {
-    text-decoration: none;
-    color: #003153;
+      text-decoration: none;
+      color: #003153;
+  }
+  a:hover{
+      color: #cccccc;
+  }
+  button{
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+  }
+  button:hover{
+      color: #cccccc;
   }
   .container {
     width: 1170px;
@@ -103,10 +114,6 @@
     border: none;
     padding: 15px;
   }
-  button{
-      border: none;
-      background-color: transparent;
-  }
   .links-plus-search{
       display: flex;
       align-items: center;
@@ -151,10 +158,11 @@
 <header class="container">
   <div class="header-top">
     <a href="/" class="btn btn-2">HOME</a>
-    <a href="companies" class="btn btn-2">COMPANY</a>
+    <a sec:authorize="hasAuthority('ADMIN')" href="companies" class="btn btn-2">COMPANY</a>
     <a href="courses" class="btn btn-2">COURSE</a>
-    <a href="students" class="btn btn-2">STUDENT</a>
-    <a href="teachers" class="btn btn-2">TEACHER</a>
+    <a href="groups" class="btn btn-2">GROUP</a>
+    <a sec:authorize="hasAuthority('ADMIN')" href="teachers" class="btn btn-2">TEACHER</a>
+      <a href="/login" class="btn btn-2">EXIT</a>
   </div>
 </header>
 <div class="container">
@@ -162,7 +170,7 @@
         <a href="students/addStudent">
             <i class="icon-plus"></i>
             <span>
-                Add Company
+                Add student
             </span>
         </a>
     </div>
@@ -176,7 +184,7 @@
             <th>GroupName</th>
             <th>studyFormation</th>
             <th>update</th>
-            <th>delete</th>
+            <th sec:authorize="hasAuthority('ADMIN')">delete</th>
         </tr>
         </thead>
         <tbody>
@@ -193,7 +201,7 @@
                     <i class="icon-pencil-square-o"></i>
                 </a>
             </td>
-            <td>
+            <td sec:authorize="hasAuthority('ADMIN')">
                 <form th:method="Delete"
                       th:action="@{/students/delete(id=${student.id})}">
                     <!--                <button type="submit" style="height: auto; background-color: red ">delete</button>-->

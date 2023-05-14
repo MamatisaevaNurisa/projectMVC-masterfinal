@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>saveUser</title>
+</head>
+<style>
+    body {
+        background-color: #2c3e50;
+    }
+
+    .row {
+        width: 500px;
+        margin: 0 auto;
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+    }
+
+    .text {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    .submit {
+        width: 100%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .submit:hover {
+        background-color: #45a049;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .back {
+        display: block;
+        width: 460px;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin-top: 20px;
+        /*margin: 8px 0;*/
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    .back:hover {
+        background-color: #45a049;
+    }
+
+    select {
+        width: 100%;
+        padding: 16px 20px;
+        border-radius: 4px;
+        background-color: #ffffff;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        margin: 8px 0;
+    }
+</style>
+<body>
+<div class="row">
+    <form th:action="@{saveUser}"
+          th:method="post"
+          th:object="${user}">
+
+        <label th:for="uname">User name</label>
+        <input class="text" th:type="text" th:field="*{username}" th:id="uname" th:name="username"
+               placeholder="User name">
+
+        <label th:for="lname">Last name</label>
+        <input class="text" th:type="text" th:field="*{lastName}" th:id="lname" th:name="lastname"
+               placeholder="Last name">
+
+        <label th:for="mail">Email</label>
+        <input class="text" th:type="text" th:field="*{email}" th:id="mail" th:name="email"
+               placeholder="Email">
+
+        <label th:for="age">Age</label>
+        <input class="text" th:type="text" th:field="*{age}" th:id="age" th:name="age"
+               placeholder="Age">
+
+        <label th:for="pass">Password</label>
+        <input class="text" th:type="text" th:field="*{password}" th:id="pass" th:name="password"
+               placeholder="Password">
+
+
+        <div class="radio-button">
+            <input type="radio" value="ADMIN" th:field="*{roleName}"
+                   id="admin">
+            <label for="admin">ADMIN</label>
+            <input type="radio" value="INSTRUCTOR" th:field="*{roleName}"
+                   id="instructor">
+            <label for="instructor">INSTRUCTOR</label>
+            <input type="radio" value="STUDENT" th:field="*{roleName}"
+                   id="student">
+            <label for="student">STUDENT</label>
+        </div>
+
+        <input class="submit" type="submit" value="add User">
+        <a href="/users" class="back">Go back</a>
+    </form>
+</div>
+</body>
+</html>

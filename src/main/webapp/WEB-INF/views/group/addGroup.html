@@ -58,7 +58,15 @@
   .back:hover {
     background-color: #45a049;
   }
-
+  select {
+    width: 100%;
+    padding: 16px 20px;
+    border-radius: 4px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin: 8px 0;
+  }
 
 
 </style>
@@ -77,6 +85,12 @@
 
     <label th:for="data">Data of finish</label>
     <input class="text" th:type="text" th:field="*{dataOfFinish}" th:id="data" th:name="data" placeholder="data of finish">
+    <select th:field="*{courseId}">
+      <option th:each="course:${courseList}"
+              th:value="${course.id}"
+              th:text="${course.courseName}">
+      </option>
+    </select>
 
     <input class="submit" type="submit" value="Add Group">
     <a href="/groups" class="back">Go back</a>

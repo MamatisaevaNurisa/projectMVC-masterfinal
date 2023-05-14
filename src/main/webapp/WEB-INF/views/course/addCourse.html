@@ -58,7 +58,15 @@
     .back:hover {
         background-color: #45a049;
     }
-
+    select {
+        width: 100%;
+        padding: 16px 20px;
+        border-radius: 4px;
+        background-color: #ffffff;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        margin: 8px 0;
+    }
 
 
 </style>
@@ -69,11 +77,18 @@
           th:method="post"
           th:object="${course}">
 
-        <label th:for="fname">Course name</label>
-        <input class="text" th:type="text" th:field="*{courseName}" th:id="fname" th:name="coursename" placeholder="course name">
+        <label th:for="Cname">Course name</label>
+        <input class="text" th:type="text" th:field="*{courseName}" th:id="Cname" th:name="courseName" placeholder="course name">
 
         <label th:for="dmonth">Duration month</label>
         <input class="text" th:type="text" th:field="*{durationMonth}" th:id="dmonth" th:name="durationMonth" placeholder="duration month">
+
+        <select th:field="*{companyId}">
+            <option th:each="company:${companyList}"
+                    th:value="${company.id}"
+                    th:text="${company.companyName}">
+            </option>
+        </select>
 
         <input class="submit" type="submit" value="Add Course">
         <a href="/courses" class="back">Go back</a>
