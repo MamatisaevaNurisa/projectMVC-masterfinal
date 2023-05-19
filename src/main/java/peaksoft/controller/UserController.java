@@ -39,13 +39,7 @@ public class UserController {
         userService.addUser(user, user.getRoleName());
         return "redirect:/users";
     }
-    @GetMapping("/profile")
-    public String profile(HttpServletRequest request, Model model){
-        Principal principal = request.getUserPrincipal();
-        User user = userService.getUserByUserName(principal.getName());
-        model.addAttribute("user", user);
-        return "user/profile";
-    }
+
     @GetMapping("/update/{id}")
     public String updateUser(@PathVariable("id") Long id, Model model){
         User user = userService.getUserById(id);
@@ -61,7 +55,7 @@ public class UserController {
     public String deleteUser(@RequestParam("id")Long id){
         User user = userService.getUserById(id);
         userService.deleteUser(user);
-        return "redirect:users/users";
+        return "redirect:/users";
     }
 
 }
